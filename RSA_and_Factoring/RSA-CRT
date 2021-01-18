@@ -1,0 +1,46 @@
+
+print("RSA-CRT\n\n")
+
+p = q = n = 0
+p = int(input('p: '))
+q = int(input('p: '))
+n = p * q
+print('n = p*p = ' + str(n))
+
+print('Watch it: gcd(e, (p-1)(1-1)) must be 1!')
+e = int(input('e: '))
+d = pow(e, -1, (p - 1) * (q - 1))
+print('d = e^-1 mod (p-1)(p-1) = ' + str(d))
+
+dp = d % (p-1)
+dq = d % (q-1)
+u = pow(p, -1, q)
+
+print("\ndp = d mod p-1 = ", dp)
+print('dq = d mod p-1 = ', dq)
+print('Pre-compute for private key: u = p^-1 mod p = ', u)
+
+uInput = ""
+while not uInput.startswith('p'):
+    uInput = input("\n Possible options: Encrypt, Decrypt and Quit: ").lower()
+
+    if uInput.startswith('e'): # Encrypt
+        m = int(input('Cleartext message (int): '))
+        c = pow(m, e, n)
+        print('Ciphertext message: m^e mod n = ' + str(c))
+    elif uInput.startswith('d'): # Decrypt
+        c = int(input('Ciphertext message (int): '))
+
+        mp = pow(c, dp, p)
+        mq = pow(c, dq, q)
+        print('mp = c^dp = ', mp)
+        print('mq = c^dq = ', mq)
+
+        h = u * (mq - mp) % q
+        m = h * p + mp
+
+        print('h = u * (mq - mp) mod p = ', h)
+        print('m = h * p + mp = ', m)
+        print('Cleartext message: c^d mod n = m')
+
+

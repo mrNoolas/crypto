@@ -1,0 +1,36 @@
+c = 221742016667880335235086977604419933217657946219108301
+e = 3
+n = 529774210762246675161318616746995617835565246251635147
+
+a = Integer('myfavoritenumberis000000', base=35)
+X = Integer('yyyyyy', base=35)
+M = matrix([[X^3, 3*X^2 *a, 3*X*a^2, a^3 - c],
+            [0, n*X^2, 0, 0],
+            [0, 0, n*X, 0],
+            [0,0,0,n]])
+
+B = M.LLL()
+# Vary the first array index X: B[X][Y] if it does not work.
+Q = B[1][0]*x^3/X^3 + B[1][1] * x^2/X^2 + B[1][2] * x/X + B[1][3]
+
+Q.roots(ring=ZZ)[0][0].str(base=35)
+
+
+
+# Same algorithm without numbers filled in:
+c =
+e =
+n =
+
+a = Integer('', base=35)
+X = Integer('', base=35)
+
+M = matrix([[X^3, 3*X^2 *a, 3*X*a^2, a^3 - c],
+            [0, n*X^2, 0, 0],
+            [0, 0, n*X, 0],
+            [0,0,0,n]])
+
+B = M.LLL()
+Q = B[1][0]*x^3/X^3 + B[1][1] * x^2/X^2 + B[1][2] * x/X + B[1][3]
+
+Q.roots(ring=ZZ)[0][0].str(base=35)
