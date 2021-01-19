@@ -2,7 +2,7 @@
 print("Schoolbook RSA\n\n")
 
 p = int(input('p: '))
-q = int(input('p: '))
+q = int(input('q: '))
 n = p * q
 print('n = p*p = ', n)
 
@@ -13,7 +13,7 @@ print('d = e^-1 mod (p-1)(p-1) = ', d)
 print('Private Key is (d, n); Public key is (e, n).')
 
 uInput = ""
-while not uInput.startswith('p'):
+while not uInput.startswith('q'):
     uInput = input("Possible options: Encrypt, Decrypt, Sign and Quit. All inputs must be ints. ").lower()
 
     if uInput.startswith('e'):
