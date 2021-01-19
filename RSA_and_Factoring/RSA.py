@@ -4,12 +4,12 @@ print("Schoolbook RSA\n\n")
 p = int(input('p: '))
 q = int(input('q: '))
 n = p * q
-print('n = p*p = ', n)
+print('n = p*q = ', n)
 
-print('Watch it: gcd(e, (p-1)(1-1)) must be 1!')
+print('Watch it: gcd(e, (p-1)(q-1)) must be 1!')
 e = int(input('e: '))
 d = pow(e, -1, (p - 1) * (q - 1))
-print('d = e^-1 mod (p-1)(p-1) = ', d)
+print('d = e^-1 mod (p-1)(q-1) = ', d)
 print('Private Key is (d, n); Public key is (e, n).')
 
 uInput = ""

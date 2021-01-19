@@ -3,22 +3,22 @@ print("RSA-CRT\n\n")
 
 p = q = n = 0
 p = int(input('p: '))
-q = int(input('p: '))
+q = int(input('q: '))
 n = p * q
 print('n = p*p = ' + str(n))
 
-print('Watch it: gcd(e, (p-1)(1-1)) must be 1!')
+print('Watch it: gcd(e, (p-1)(q-1)) must be 1!')
 e = int(input('e: '))
 d = pow(e, -1, (p - 1) * (q - 1))
-print('d = e^-1 mod (p-1)(p-1) = ' + str(d))
+print('d = e^-1 mod (p-1)(q-1) = ' + str(d))
 
 dp = d % (p-1)
 dq = d % (q-1)
 u = pow(p, -1, q)
 
 print("\ndp = d mod p-1 = ", dp)
-print('dq = d mod p-1 = ', dq)
-print('Pre-compute for private key: u = p^-1 mod p = ', u)
+print('dq = d mod q-1 = ', dq)
+print('Pre-compute for private key: u = p^-1 mod q = ', u)
 
 uInput = ""
 while not uInput.startswith('p'):
@@ -39,7 +39,7 @@ while not uInput.startswith('p'):
         h = u * (mq - mp) % q
         m = h * p + mp
 
-        print('h = u * (mq - mp) mod p = ', h)
+        print('h = u * (mq - mp) mod q = ', h)
         print('m = h * p + mp = ', m)
         print('Cleartext message: c^d mod n = m')
 
